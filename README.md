@@ -58,7 +58,6 @@ custom-doc-skills/
 │           └── other.md
 │
 ├── README.md               # 项目说明文档
-├── SKILL.md                # 技能模板文件
 └── LICENSE                 # 许可证文件
 ```
 
