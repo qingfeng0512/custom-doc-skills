@@ -8,6 +8,8 @@
 
 - **React 技能** - 现代前端框架的完整开发指南
 - **Vue2 技能** - 渐进式前端框架的详细文档
+- **Chrome Extensions 技能** - 浏览器扩展开发完整指南
+- **LangChain 技能** - LLM 应用开发框架指南
 - **可扩展** - 支持添加更多框架和技能文档
 
 ## 🚀 可用技能
@@ -32,6 +34,29 @@
 - **迁移指南** - 从其他框架迁移 (4页)
 - **其他** - 生态和工具介绍 (20页)
 
+### Chrome Extensions 技能 (`skills/chrome-extensions/`)
+总计 **11页** 完整文档，涵盖：
+
+- **入门指南** - 扩展开发快速上手 (getting_started.md)
+- **清单配置** - Manifest V3 配置详解 (manifest.md)
+- **后台脚本** - Background Scripts 开发 (background_scripts.md)
+- **内容脚本** - Content Scripts 注入与通信 (content_scripts.md)
+- **弹出界面** - Popup UI 开发指南 (popup_ui.md)
+- **存储管理** - Chrome Storage API (storage.md)
+- **权限管理** - 扩展权限配置 (permissions.md)
+- **调试技巧** - 扩展调试方法 (debugging.md)
+- **Web Extensions** - 跨浏览器扩展开发 (web_extensions.md)
+
+### LangChain 技能 (`skills/langchain/`)
+总计 **6页**详细文档，包含 ：
+
+- **入门指南** - LangChain 快速上手 (getting_started.md)
+- **核心概念** - LangChain 基础概念 (concepts.md)
+- **Chain 链** - Chain 组合与使用 (chains.md)
+- **Agent 代理** - 智能代理开发 (agents.md)
+- **教程指南** - 实战教程集合 (tutorials.md)
+- **索引文档** - 文档检索系统 (index.md)
+
 ## 📁 项目结构
 
 ```
@@ -47,15 +72,38 @@ custom-doc-skills/
 │   │       ├── other.md
 │   │       └── state.md
 │   │
-│   └── vue2/               # Vue2 技能文档
+│   ├── vue2/               # Vue2 技能文档
+│   │   ├── SKILL.md        # 技能元数据
+│   │   └── references/     # 详细参考文档
+│   │       ├── advanced.md
+│   │       ├── api.md
+│   │       ├── essentials.md
+│   │       ├── getting_started.md
+│   │       ├── migration.md
+│   │       └── other.md
+│   │
+│   ├── chrome-extensions/  # Chrome Extensions 技能文档
 │       ├── SKILL.md        # 技能元数据
 │       └── references/     # 详细参考文档
-│           ├── advanced.md
-│           ├── api.md
-│           ├── essentials.md
 │           ├── getting_started.md
-│           ├── migration.md
-│           └── other.md
+│           ├── manifest.md
+│           ├── background_scripts.md
+│           ├── content_scripts.md
+│           ├── popup_ui.md
+│           ├── storage.md
+│           ├── permissions.md
+│           ├── debugging.md
+│           └── web_extensions.md
+│
+│   └── langchain/          # LangChain 技能文档
+│       ├── SKILL.md        # 技能元数据
+│       └── references/     # 详细参考文档
+│           ├── getting_started.md
+│           ├── concepts.md
+│           ├── chains.md
+│           ├── agents.md
+│           ├── tutorials.md
+│           └── index.md
 │
 ├── README.md               # 项目说明文档
 └── LICENSE                 # 许可证文件

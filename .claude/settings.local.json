@@ -6,7 +6,22 @@
       "Bash(git push)",
       "Bash(git config:*)",
       "Bash(git push:*)",
-      "Bash(git pull:*)"
+      "Bash(git pull:*)",
+      "Skill(canvas-design)",
+      "Bash(python aicode-poster.png)",
+      "Bash(python3:*)",
+      "Bash(pip3 install:*)",
+      "Bash(brew install:*)",
+      "Bash(source:*)",
+      "Bash(pip install:*)",
+      "Bash(python:*)",
+      "Bash(git pull)",
+      "Bash(git stash:*)",
+      "Bash(git stash pop)",
+      "Bash(git rebase:*)",
+      "Bash(git reset:*)",
+      "Bash(git checkout:*)",
+      "Bash(git check-ignore:*)"
     ],
     "deny": [],
     "ask": []
