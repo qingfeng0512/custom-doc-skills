@@ -209,3 +209,6 @@ __marimo__/
 
 # Zip files
 *.zip
+
+# E2E test case logs (keep locally, exclude from git)
+skills/e2e-test-case-generator/2025-*-epcc*.txt

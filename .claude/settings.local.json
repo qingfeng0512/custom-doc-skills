@@ -26,7 +26,8 @@
       "Bash(sudo npm install:*)",
       "Bash(gh auth status:*)",
       "Bash(curl:*)",
-      "Bash(ping:*)"
+      "Bash(ping:*)",
+      "Bash(git rm:*)"
     ],
     "deny": [],
     "ask": []
