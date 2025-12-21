@@ -21,7 +21,9 @@
       "Bash(git rebase:*)",
       "Bash(git reset:*)",
       "Bash(git checkout:*)",
-      "Bash(git check-ignore:*)"
+      "Bash(git check-ignore:*)",
+      "Bash(npm install -g pnpm)",
+      "Bash(sudo npm install:*)"
     ],
     "deny": [],
     "ask": []
