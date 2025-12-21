@@ -1,0 +1,170 @@
+{
+  "case_id": "epcc_201_0110_Z_AI_003",
+  "intent_analysis": {
+    "business_type": "支付",
+    "business_subtype": "快捷支付",
+    "participants": [
+      "支付机构",
+      "网联平台",
+      "银行",
+      "用户"
+    ],
+    "flow_steps": [
+      "发起",
+      "受理",
+      "转发",
+      "处理",
+      "返回",
+      "响应"
+    ],
+    "key_parameters": {
+      "业务编号": "epcc_201_0110_Z_AI_003",
+      "支付方式": "快捷支付",
+      "处理平台": "网联平台",
+      "失败原因": "余额不足"
+    },
+    "success_criteria": [
+      "支付机构正确接收银行返回的余额不足失败响应",
+      "网联平台准确转发银行处理结果",
+      "支付流程完整记录失败原因"
+    ],
+    "risk_points": [
+      "余额不足导致的支付失败处理",
+      "网联平台转发延迟或错误",
+      "支付机构对失败响应的正确处理",
+      "用户账户余额查询准确性"
+    ]
+  },
+  "case_info": {
+    "caseId": "epcc_201_0110_Z_AI_003",
+    "caseSummary": "支付机构、网联平台、银行、用户执行支付业务，流程：发起 → 受理 → 转发 → 处理 → 返回 → 响应",
+    "caseData": {
+      "transType": "quickpay",
+      "amount": "${amount}",
+      "orderId": "ORDER_${timestamp}",
+      "merchantId": "MCH001",
+      "cardInfo": {
+        "cardNo": "6222021234567890",
+        "cardType": "debit",
+        "cvv2": "123",
+        "validity": "1225"
+      },
+      "payerInfo": {
+        "name": "测试用户",
+        "phone": "13800138000",
+        "idNo": "110101199001011234"
+      },
+      "payeeInfo": {
+        "merchantName": "测试商户",
+        "merchantNo": "MCH001"
+      },
+      "riskInfo": {
+        "deviceId": "DEVICE_${timestamp}",
+        "ip": "192.168.1.100",
+        "userAgent": "Mozilla/5.0"
+      }
+    },
+    "mockRtn": {
+      "responseCode": "51",
+      "responseMsg": "余额不足",
+      "transId": "TXN_${timestamp}",
+      "authCode": "",
+      "settleDate": "20250120",
+      "fee": "0.00",
+      "timestamp": "${timestamp}",
+      "status": "FAILED"
+    },
+    "msgTemplate": {
+      "header": {
+        "version": "1.0",
+        "msgType": "quickpay_req",
+        "msgSrc": "PAYMENT_INSTITUTION",
+        "msgDest": "NET_UNION",
+        "timestamp": "${timestamp}"
+      },
+      "body": {
+        "merchantId": "MCH001",
+        "orderId": "ORDER_${timestamp}",
+        "amount": "${amount}",
+        "currency": "CNY",
+        "cardInfo": "ENCRYPTED_CARD_DATA",
+        "riskInfo": "ENCRYPTED_RISK_DATA"
+      }
+    },
+    "participants": [
+      "支付机构",
+      "网联平台",
+      "银行",
+      "用户"
+    ],
+    "flowSteps": [
+      "发起",
+      "受理",
+      "转发",
+      "处理",
+      "返回",
+      "响应"
+    ],
+    "businessType": "支付"
+  },
+  "assertions": [
+    {
+      "assertType": "MSG",
+      "assertKey": "responseCode",
+      "assertValue": "51",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证余额不足响应码"
+    },
+    {
+      "assertType": "MSG",
+      "assertKey": "transId",
+      "assertValue": ".*",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证支付业务中transId的值"
+    },
+    {
+      "assertType": "MSG",
+      "assertKey": "authCode",
+      "assertValue": "",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "失败场景无需授权码"
+    },
+    {
+      "assertType": "BUSINESS",
+      "assertKey": "payment_status",
+      "assertValue": "FAILED",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证支付状态为失败"
+    },
+    {
+      "assertType": "DATA",
+      "assertKey": "amount_match",
+      "assertValue": "true",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证支付业务中amount_match的值"
+    },
+    {
+      "assertType": "TIMING",
+      "assertKey": "response_time",
+      "assertValue": "<5000",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证支付业务中response_time的值"
+    },
+    {
+      "assertType": "MSG",
+      "assertKey": "responseMsg",
+      "assertValue": "余额不足",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证余额不足错误信息"
+    }
+  ],
+  "execution_result": null,
+  "error": null
+}

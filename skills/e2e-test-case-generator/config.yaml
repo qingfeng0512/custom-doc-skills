@@ -1,0 +1,36 @@
+# E2E测试案例生成器配置文件
+
+# AI模型配置
+ai_config:
+  # OpenAI API配置
+  api_key: "sk-ayllmfdkqjsvuaubhgnvhbosnoekacdzldbanzbmzohexxef"
+  api_base: "https://api.siliconflow.cn/v1"
+  model: "MiniMaxAI/MiniMax-M2"
+  # 请求参数
+  temperature: 0.1
+  max_tokens: 2000
+
+# MCP服务配置
+mcp_config:
+  base_url: "http://localhost:8000"
+  auth_token: null  # 如果需要认证，可以设置token
+
+# 模板配置
+template_config:
+  templates_dir: "assets/templates"
+  # 匹配权重配置
+  match_weights:
+    business_type: 0.5    # 业务类型匹配权重
+    participants: 0.3     # 参与者匹配权重
+    flow_steps: 0.2       # 流程步骤匹配权重
+
+# 输出配置
+output_config:
+  output_dir: "output"
+  # 是否立即执行测试案例
+  execute_immediately: false
+
+# 日志配置
+logging_config:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

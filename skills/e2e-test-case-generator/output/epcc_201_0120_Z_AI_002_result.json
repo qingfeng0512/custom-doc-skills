@@ -1,0 +1,168 @@
+{
+  "case_id": "epcc_201_0120_Z_AI_002",
+  "intent_analysis": {
+    "business_type": "转账",
+    "business_subtype": "银行转账汇款",
+    "participants": [
+      "用户",
+      "银行系统",
+      "收款方"
+    ],
+    "flow_steps": [
+      "发起转账请求",
+      "银行系统受理",
+      "处理转账业务",
+      "资金到账",
+      "状态更新为成功"
+    ],
+    "key_parameters": {
+      "转账金额": "具体金额",
+      "收款方账户": "收款方银行账号",
+      "付款方账户": "付款方银行账号",
+      "转账状态": "成功/失败",
+      "交易时间": "转账发生时间"
+    },
+    "success_criteria": [
+      "收款方账户收到转账资金",
+      "转账状态更新为成功",
+      "无错误信息返回"
+    ],
+    "risk_points": [
+      "资金安全",
+      "账户余额不足",
+      "转账超时",
+      "系统故障导致状态不一致",
+      "重复转账风险"
+    ]
+  },
+  "case_info": {
+    "caseId": "epcc_201_0120_Z_AI_002",
+    "caseSummary": "用户、银行系统、收款方执行转账业务，流程：发起转账请求 → 银行系统受理 → 处理转账业务 → 资金到账 → 状态更新为成功",
+    "caseData": {
+      "transType": "transfer",
+      "amount": "${amount}",
+      "orderId": "TXFER_${timestamp}",
+      "payerInfo": {
+        "accountNo": "6222021234567890",
+        "accountName": "张三",
+        "bankCode": "ICBK",
+        "phone": "13800138000"
+      },
+      "payeeInfo": {
+        "accountNo": "6228481234567890",
+        "accountName": "李四",
+        "bankCode": "ABC",
+        "phone": "13900139000"
+      },
+      "transferInfo": {
+        "remark": "测试转账",
+        "urgency": "normal",
+        "fee": "0.00"
+      },
+      "riskInfo": {
+        "deviceId": "DEVICE_${timestamp}",
+        "ip": "192.168.1.100",
+        "userAgent": "Mozilla/5.0"
+      }
+    },
+    "mockRtn": {
+      "responseCode": "00",
+      "responseMsg": "转账成功",
+      "transId": "TXN_${timestamp}",
+      "fee": "0.00",
+      "actualAmount": "${amount}",
+      "timestamp": "${timestamp}",
+      "status": "SUCCESS"
+    },
+    "msgTemplate": {
+      "header": {
+        "version": "1.0",
+        "msgType": "transfer_req",
+        "msgSrc": "USER",
+        "msgDest": "BANK",
+        "timestamp": "${timestamp}"
+      },
+      "body": {
+        "orderId": "TXFER_${timestamp}",
+        "payerAccount": "ENCRYPTED_PAYER_ACCOUNT",
+        "payeeAccount": "ENCRYPTED_PAYEE_ACCOUNT",
+        "amount": "${amount}",
+        "currency": "CNY",
+        "remark": "测试转账"
+      }
+    },
+    "participants": [
+      "用户",
+      "银行系统",
+      "收款方"
+    ],
+    "flowSteps": [
+      "发起转账请求",
+      "银行系统受理",
+      "处理转账业务",
+      "资金到账",
+      "状态更新为成功"
+    ],
+    "businessType": "转账"
+  },
+  "assertions": [
+    {
+      "assertType": "MSG",
+      "assertKey": "responseCode",
+      "assertValue": "00",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证转账业务中responseCode的值"
+    },
+    {
+      "assertType": "MSG",
+      "assertKey": "transId",
+      "assertValue": ".*",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证转账业务中transId的值"
+    },
+    {
+      "assertType": "BUSINESS",
+      "assertKey": "transfer_status",
+      "assertValue": "SUCCESS",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证转账业务中transfer_status的值"
+    },
+    {
+      "assertType": "DATA",
+      "assertKey": "amount_match",
+      "assertValue": "true",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证转账业务中amount_match的值"
+    },
+    {
+      "assertType": "DATA",
+      "assertKey": "payer_account_balance",
+      "assertValue": ">0",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证转账业务中payer_account_balance的值"
+    },
+    {
+      "assertType": "TIMING",
+      "assertKey": "transfer_time",
+      "assertValue": "<300000",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证转账业务中transfer_time的值"
+    },
+    {
+      "assertType": "MSG",
+      "assertKey": "status",
+      "assertValue": "00",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证业务状态：转账状态更新为成功"
+    }
+  ],
+  "execution_result": null,
+  "error": null
+}

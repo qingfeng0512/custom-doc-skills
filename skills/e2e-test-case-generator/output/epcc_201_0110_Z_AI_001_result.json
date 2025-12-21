@@ -1,0 +1,164 @@
+{
+  "case_id": "epcc_201_0110_Z_AI_001",
+  "intent_analysis": {
+    "business_type": "支付",
+    "business_subtype": "快捷支付",
+    "participants": [
+      "支付机构",
+      "网联平台",
+      "银行",
+      "用户"
+    ],
+    "flow_steps": [
+      "发起",
+      "受理",
+      "转发",
+      "处理",
+      "返回",
+      "响应"
+    ],
+    "key_parameters": {
+      "交易金额": "具体金额",
+      "商户号": "支付机构商户标识",
+      "订单号": "唯一交易订单号",
+      "银行账户信息": "用户银行卡信息",
+      "交易时间": "发起时间戳"
+    },
+    "success_criteria": [
+      "银行处理成功返回",
+      "网联平台正确转发响应",
+      "支付机构接收成功响应",
+      "用户账户扣款成功"
+    ],
+    "risk_points": [
+      "网络传输延迟或中断",
+      "银行处理失败或超时",
+      "数据一致性校验失败",
+      "重复支付风险",
+      "安全认证失败"
+    ]
+  },
+  "case_info": {
+    "caseId": "epcc_201_0110_Z_AI_001",
+    "caseSummary": "支付机构、网联平台、银行、用户执行支付业务，流程：发起 → 受理 → 转发 → 处理 → 返回 → 响应",
+    "caseData": {
+      "transType": "quickpay",
+      "amount": "${amount}",
+      "orderId": "ORDER_${timestamp}",
+      "merchantId": "MCH001",
+      "cardInfo": {
+        "cardNo": "6222021234567890",
+        "cardType": "debit",
+        "cvv2": "123",
+        "validity": "1225"
+      },
+      "payerInfo": {
+        "name": "测试用户",
+        "phone": "13800138000",
+        "idNo": "110101199001011234"
+      },
+      "payeeInfo": {
+        "merchantName": "测试商户",
+        "merchantNo": "MCH001"
+      },
+      "riskInfo": {
+        "deviceId": "DEVICE_${timestamp}",
+        "ip": "192.168.1.100",
+        "userAgent": "Mozilla/5.0"
+      }
+    },
+    "mockRtn": {
+      "responseCode": "00",
+      "responseMsg": "交易成功",
+      "transId": "TXN_${timestamp}",
+      "authCode": "AUTH${timestamp}",
+      "settleDate": "20250120",
+      "fee": "0.00",
+      "timestamp": "${timestamp}"
+    },
+    "msgTemplate": {
+      "header": {
+        "version": "1.0",
+        "msgType": "quickpay_req",
+        "msgSrc": "PAYMENT_INSTITUTION",
+        "msgDest": "NET_UNION",
+        "timestamp": "${timestamp}"
+      },
+      "body": {
+        "merchantId": "MCH001",
+        "orderId": "ORDER_${timestamp}",
+        "amount": "${amount}",
+        "currency": "CNY",
+        "cardInfo": "ENCRYPTED_CARD_DATA",
+        "riskInfo": "ENCRYPTED_RISK_DATA"
+      }
+    },
+    "participants": [
+      "支付机构",
+      "网联平台",
+      "银行",
+      "用户"
+    ],
+    "flowSteps": [
+      "发起",
+      "受理",
+      "转发",
+      "处理",
+      "返回",
+      "响应"
+    ],
+    "businessType": "支付"
+  },
+  "assertions": [
+    {
+      "assertType": "MSG",
+      "assertKey": "responseCode",
+      "assertValue": "00",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证支付业务中responseCode的值"
+    },
+    {
+      "assertType": "MSG",
+      "assertKey": "transId",
+      "assertValue": ".*",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证支付业务中transId的值"
+    },
+    {
+      "assertType": "MSG",
+      "assertKey": "authCode",
+      "assertValue": ".*",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证支付业务中authCode的值"
+    },
+    {
+      "assertType": "BUSINESS",
+      "assertKey": "payment_status",
+      "assertValue": "SUCCESS",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证支付业务中payment_status的值"
+    },
+    {
+      "assertType": "DATA",
+      "assertKey": "amount_match",
+      "assertValue": "true",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证支付业务中amount_match的值"
+    },
+    {
+      "assertType": "TIMING",
+      "assertKey": "response_time",
+      "assertValue": "<5000",
+      "assertRule": "REQUIRED",
+      "createBy": "AI",
+      "description": "验证支付业务中response_time的值"
+    }
+  ],
+  "execution_result": null,
+  "error": null
+}
