@@ -23,7 +23,10 @@
       "Bash(git checkout:*)",
       "Bash(git check-ignore:*)",
       "Bash(npm install -g pnpm)",
-      "Bash(sudo npm install:*)"
+      "Bash(sudo npm install:*)",
+      "Bash(gh auth status:*)",
+      "Bash(curl:*)",
+      "Bash(ping:*)"
     ],
     "deny": [],
     "ask": []
