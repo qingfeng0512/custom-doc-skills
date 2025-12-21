@@ -10,6 +10,8 @@
 - **Vue2 技能** - 渐进式前端框架的详细文档
 - **Chrome Extensions 技能** - 浏览器扩展开发完整指南
 - **LangChain 技能** - LLM 应用开发框架指南
+- **E2E测试案例生成器** - AI驱动的自动化测试案例生成工具
+- **Model Context Protocol** - MCP协议完整文档和实现指南
 - **可扩展** - 支持添加更多框架和技能文档
 
 ## 🚀 可用技能
@@ -48,7 +50,7 @@
 - **Web Extensions** - 跨浏览器扩展开发 (web_extensions.md)
 
 ### LangChain 技能 (`skills/langchain/`)
-总计 **6页**详细文档，包含 ：
+总计 **6页**详细文档，包含：
 
 - **入门指南** - LangChain 快速上手 (getting_started.md)
 - **核心概念** - LangChain 基础概念 (concepts.md)
@@ -56,6 +58,24 @@
 - **Agent 代理** - 智能代理开发 (agents.md)
 - **教程指南** - 实战教程集合 (tutorials.md)
 - **索引文档** - 文档检索系统 (index.md)
+
+### E2E测试案例生成器 (`skills/e2e-test-case-generator/`)
+总计 **6个核心文件**，提供：
+
+- **AI意图分析** - 智能分析业务场景和测试需求
+- **模板匹配** - 基于业务类型的智能模板匹配
+- **案例生成** - 自动生成完整的E2E测试案例数据
+- **MCP集成** - 与Model Context Protocol无缝集成
+- **配置管理** - 统一的配置管理和环境变量支持
+- **实战示例** - 包含快捷支付、转账汇款等业务场景
+
+### Model Context Protocol (`skills/model-context-protocol/`)
+总计 **4个参考文档**，提供：
+
+- **完整协议文档** - MCP协议规范和标准 (llms.md)
+- **全量文档** - 详细的技术参考 (llms-full.md)
+- **轻量版文档** - 快速入门指南 (llms-txt.md)
+- **索引目录** - 文档导航和快速定位 (index.md)
 
 ## 📁 项目结构
 
@@ -95,14 +115,37 @@ custom-doc-skills/
 │           ├── debugging.md
 │           └── web_extensions.md
 │
-│   └── langchain/          # LangChain 技能文档
+│   ├── langchain/          # LangChain 技能文档
+│   │   ├── SKILL.md        # 技能元数据
+│   │   └── references/     # 详细参考文档
+│   │       ├── getting_started.md
+│   │       ├── concepts.md
+│   │       ├── chains.md
+│   │       ├── agents.md
+│   │       ├── tutorials.md
+│   │       └── index.md
+│   │
+│   ├── e2e-test-case-generator/  # E2E测试案例生成器
+│   │   ├── SKILL.md        # 技能元数据
+│   │   ├── config.yaml     # 配置文件（支持环境变量）
+│   │   ├── scripts/        # 核心脚本
+│   │   │   ├── ai_intent_analyzer.py
+│   │   │   ├── case_generator.py
+│   │   │   ├── config_manager.py
+│   │   │   ├── e2e_generator.py
+│   │   │   ├── mcp_integration.py
+│   │   │   └── test_skill.py
+│   │   ├── assets/         # 资源文件
+│   │   │   ├── templates/  # 业务模板
+│   │   │   └── examples/   # 示例文档
+│   │   └── output/         # 生成结果
+│   │
+│   └── model-context-protocol/   # Model Context Protocol
 │       ├── SKILL.md        # 技能元数据
 │       └── references/     # 详细参考文档
-│           ├── getting_started.md
-│           ├── concepts.md
-│           ├── chains.md
-│           ├── agents.md
-│           ├── tutorials.md
+│           ├── llms.md
+│           ├── llms-full.md
+│           ├── llms-txt.md
 │           └── index.md
 │
 ├── README.md               # 项目说明文档
@@ -117,6 +160,9 @@ custom-doc-skills/
 - ✅ **完整覆盖** - 涵盖从入门到高级的完整内容
 - ✅ **统一格式** - 标准化的文档结构和索引
 - ✅ **易于扩展** - 可方便地添加新的技能文档
+- ✅ **AI智能分析** - E2E测试案例生成器支持AI驱动的业务场景分析
+- ✅ **环境变量支持** - 安全的配置管理，避免敏感信息泄露
+- ✅ **MCP集成** - 与Model Context Protocol无缝集成，提供强大的工具调用能力
 
 ## 📖 使用方法
 
